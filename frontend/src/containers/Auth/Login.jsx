@@ -4,7 +4,7 @@ import { clearRegisterErrors, loginUser } from '../../store/actions/usersActions
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
-const LoginForm = () => {
+const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const error = useSelector(state => state.users.loginError);
@@ -26,8 +26,13 @@ const LoginForm = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        await dispatch(loginUser(formData));
-        navigate('/');
+        try{
+            await dispatch(loginUser(formData));
+            navigate('/');
+        }catch (e) {
+            throw e;
+        }
+
     };
 
     const togglePasswordVisibility = () => {
@@ -37,8 +42,8 @@ const LoginForm = () => {
     return (
         <section className="auth-container">
             <div className="auth-content">
-                <h2 className="auth-heading">Добро пожаловать!</h2>
-                <p className="auth-subheading">Введите свои данные для входа в систему.</p>
+                <h1 className="auth-heading">Вход в систему</h1>
+                <p className="auth-subheading">Введите ваши данные для входа в систему.</p>
 
                 {error && <div className="auth-error">{error.error}</div>}
 
@@ -89,4 +94,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default Login;

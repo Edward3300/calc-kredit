@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EmailModal from '../../components/EmailModal/EmailModal';
 import { calculateLoan, sendEmail, setCalculatorData } from "../../store/actions/calculatorActions";
-import './NewApp.css'; // Новый файл стилей
+import './Calculator.css'; // Новый файл стилей
 
 function Calculator({ interestRate, loanType }) {
     const dispatch = useDispatch();
@@ -24,18 +24,20 @@ function Calculator({ interestRate, loanType }) {
     };
 
     return (
-        <div className="new-calculator-wrapper">
-            <header className="new-calculator-header">
-                <h2 className="loan-type">{loanType}</h2>
-                <div className="interest-details">
-                    <span className="interest-rate">{interestRate}%</span>
-                    <span className="interest-label">Годовая процентная ставка</span>
+        <div className="calculator-container">
+            <header className="calculator-header">
+                <h1 className="calculator-title">Кредитный калькулятор</h1>
+                <div className="calculator-subtitle">
+                    <h2 className="loan-type">{loanType}</h2>
+                    <p className="interest-details">
+                        Годовая процентная ставка: <strong>{interestRate}%</strong>
+                    </p>
                 </div>
             </header>
-            <div className="new-calculator-content">
-                <section className="input-section">
+            <div className="calculator-body">
+                <div className="input-container">
                     <InputField
-                        label="Сумма займа (до 10,000,000 ₽)"
+                        label="Сумма кредита (до 10,000,000 ₽)"
                         name="cost"
                         value={calculator.cost}
                         min={0}
@@ -44,7 +46,7 @@ function Calculator({ interestRate, loanType }) {
                         onChange={handleChange}
                     />
                     <InputField
-                        label="Срок займа (до 30 лет)"
+                        label="Срок кредита (до 30 лет)"
                         name="term"
                         value={calculator.term}
                         min={1}
@@ -55,20 +57,20 @@ function Calculator({ interestRate, loanType }) {
                     <InputField
                         label="Первоначальный взнос (₽)"
                         name="initialPayment"
-                        value={calculator.initialPayment === 0 ? '' : calculator.initialPayment}
+                        value={calculator.initialPayment || ''}
                         min={0}
                         onChange={handleChange}
                     />
-                </section>
-                <section className="output-section">
-                    <OutputItem label="Ежемесячный платеж" value={calculator.monthlyPayment ? `${calculator.monthlyPayment.toLocaleString()} ₽` : '0 ₽'} />
-                    <OutputItem label="Общая сумма выплат" value={calculator.totalPayment ? `${calculator.totalPayment.toLocaleString()} ₽` : '0 ₽'} />
-                    <OutputItem label="Необходимый доход" value={calculator.requiredIncome ? `${calculator.requiredIncome.toLocaleString()} ₽` : '0 ₽'} />
-                </section>
-                <section className="action-buttons">
-                    <ActionButton onClick={handleCalculate} disabled={calculator.cost <= 0 || calculator.initialPayment <= 0 || calculator.term <= 0} label="Рассчитать платеж" />
-                    <ActionButton onClick={() => setShowModal(true)} label="Отправить результат на Email" />
-                </section>
+                </div>
+                <div className="results-container">
+                    <ResultItem label="Ежемесячный платеж" value={calculator.monthlyPayment} />
+                    <ResultItem label="Общая сумма выплат" value={calculator.totalPayment} />
+                    <ResultItem label="Рекомендуемый доход" value={calculator.requiredIncome} />
+                </div>
+                <div className="actions-container">
+                    <ActionButton onClick={handleCalculate} disabled={calculator.cost <= 0 || calculator.initialPayment <= 0 || calculator.term <= 0} label="Рассчитать" />
+                    <ActionButton onClick={() => setShowModal(true)} label="Отправить по Email" />
+                </div>
             </div>
             <EmailModal
                 show={showModal}
@@ -83,8 +85,8 @@ function Calculator({ interestRate, loanType }) {
 }
 
 const InputField = ({ label, name, value, min, max, step, onChange }) => (
-    <div className="input-group">
-        <label className="input-label" htmlFor={name}>{label}</label>
+    <div className="input-field">
+        <label htmlFor={name} className="input-label">{label}</label>
         <input
             type="number"
             id={name}
@@ -94,20 +96,20 @@ const InputField = ({ label, name, value, min, max, step, onChange }) => (
             max={max}
             step={step}
             onChange={onChange}
-            className="input-field"
+            className="input-element"
         />
     </div>
 );
 
-const OutputItem = ({ label, value }) => (
-    <div className="output-item">
-        <span className="output-label">{label}</span>
-        <strong className="output-value">{value}</strong>
+const ResultItem = ({ label, value }) => (
+    <div className="result-item">
+        <span className="result-label">{label}</span>
+        <span className="result-value">{value ? `${value.toLocaleString()} ₽` : '0 ₽'}</span>
     </div>
 );
 
 const ActionButton = ({ onClick, disabled, label }) => (
-    <button onClick={onClick} disabled={disabled} className="action-button">
+    <button onClick={onClick} disabled={disabled} className="action-btn">
         {label}
     </button>
 );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCalculations, deleteCalculation } from "../../store/actions/adminActions";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCalculations, deleteCalculation } from '../../store/actions/adminActions';
 import CalculationForm from '../../components/CalculationForm/CalculationForm';
 import './AdminPanel.css';
 
@@ -41,10 +41,10 @@ const AdminDashboard = () => {
     };
 
     return (
-        <section className="dashboard">
+        <section className="admin-dashboard">
             <header className="dashboard-header">
-                <h1>Панель Администратора</h1>
-                <button className="export-btn" onClick={handleExport}>Экспортировать расчеты</button>
+                <h1 className="header-title">Панель Администратора</h1>
+                <button className="btn-export" onClick={handleExport}>Экспортировать данные</button>
             </header>
 
             <CalculationForm
@@ -52,30 +52,45 @@ const AdminDashboard = () => {
                 setCurrentCalculation={setSelectedCalculation}
             />
 
-            {loading && <p className="dashboard-loading">Загрузка расчетов...</p>}
-            {error && <p className="dashboard-error">Ошибка: {error}</p>}
+            {loading && <p className="status-message status-loading">Загрузка данных...</p>}
+            {error && <p className="status-message status-error">Ошибка: {error}</p>}
 
-            <div className="calculations-list">
-                {calculations && calculations.map((calc, index) => (
-                    <div className="calculation-item" key={index}>
-                        <div className="calculation-info">
-                            <p><span>Тип кредита:</span> {calc.type}</p>
-                            <p><span>Сумма кредита:</span> {calc.cost.toLocaleString()} ₽</p>
-                            <p><span>Первоначальный взнос:</span> {calc.initialPayment.toLocaleString()} ₽</p>
-                            <p><span>Срок кредита:</span> {calc.term} лет</p>
-                            <p><span>Процентная ставка:</span> {calc.interestRate}%</p>
-                            <p><span>Сумма кредита:</span> {calc.loanAmount.toLocaleString()} ₽</p>
-                            <p><span>Ежемесячный платеж:</span> {calc.monthlyPayment.toLocaleString()} ₽</p>
-                            <p><span>Общая сумма выплат:</span> {calc.totalPayment.toLocaleString()} ₽</p>
-                            <p><span>Необходимый доход:</span> {calc.requiredIncome.toLocaleString()} ₽</p>
-                            <p><span>Дата создания:</span> {new Date(calc.createdAt).toLocaleString()}</p>
-                        </div>
-                        <div className="calculation-actions">
-                            <button onClick={() => handleEdit(calc)} className="edit-btn">Редактировать</button>
-                            <button onClick={() => handleDelete(calc._id)} className="delete-btn">Удалить</button>
-                        </div>
-                    </div>
-                ))}
+            <div className="calculations-table-container">
+                <table className="calculations-table">
+                    <thead>
+                    <tr>
+                        <th>Тип кредита</th>
+                        <th>Сумма кредита</th>
+                        <th>Первоначальный взнос</th>
+                        <th>Срок кредита</th>
+                        <th>Процентная ставка</th>
+                        <th>Ежемесячный платеж</th>
+                        <th>Общая сумма выплат</th>
+                        <th>Необходимый доход</th>
+                        <th>Дата создания</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {calculations && calculations.map((calc) => (
+                        <tr key={calc._id}>
+                            <td>{calc.type}</td>
+                            <td>{calc.cost.toLocaleString()} ₽</td>
+                            <td>{calc.initialPayment.toLocaleString()} ₽</td>
+                            <td>{calc.term} лет</td>
+                            <td>{calc.interestRate}%</td>
+                            <td>{calc.monthlyPayment.toLocaleString()} ₽</td>
+                            <td>{calc.totalPayment.toLocaleString()} ₽</td>
+                            <td>{calc.requiredIncome.toLocaleString()} ₽</td>
+                            <td>{new Date(calc.createdAt).toLocaleDateString()} {new Date(calc.createdAt).toLocaleTimeString()}</td>
+                            <td>
+                                <button onClick={() => handleEdit(calc)} className="btn-edit">Редактировать</button>
+                                <button onClick={() => handleDelete(calc._id)} className="btn-delete">Удалить</button>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
             </div>
         </section>
     );

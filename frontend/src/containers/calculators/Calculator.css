@@ -1,122 +1,103 @@
-.new-calculator-wrapper {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px 30px;
-    max-width: 600px;
-    margin: 20px auto;
-    font-family: 'Montserrat', sans-serif;
+.calculator-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.new-calculator-header {
+.calculator-header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.loan-type {
-    font-size: 28px;
-    color: #10b981;
+.calculator-title {
+    font-size: 32px;
+    color: #333;
     margin-bottom: 10px;
 }
 
-.interest-details {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 10px;
-    color: #2e3440;
-}
-
-.interest-rate {
-    font-size: 36px;
-    font-weight: bold;
-    color: #e63946;
-}
-
-.interest-label {
+.calculator-subtitle {
     font-size: 18px;
+    color: #666;
 }
 
-.new-calculator-content {
+.loan-type {
+    font-size: 24px;
+    color: #333;
+}
+
+.interest-details {
+    font-size: 16px;
+}
+
+.calculator-body {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.input-section, .output-section {
-    display: flex;
-    flex-direction: column;
+.input-container {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 15px;
 }
 
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.results-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
 }
 
-.input-label {
-    font-size: 16px;
-    color: #2e3440;
-}
-
-.input-field {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #e5e7eb;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-}
-
-.input-field:focus {
-    border-color: #10b981;
-    outline: none;
-}
-
-.output-item {
+.actions-container {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #f9fafb;
-    border-radius: 6px;
-    border: 1px solid #e5e7eb;
 }
 
-.output-label {
-    font-size: 16px;
-    color: #2e3440;
+.input-field, .result-item {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.output-value {
-    font-size: 18px;
+.input-label, .result-label {
+    display: block;
     font-weight: bold;
-    color: #10b981;
+    margin-bottom: 5px;
+    color: #333;
 }
 
-.action-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.action-button {
-    padding: 12px 20px;
-    background-color: #10b981;
-    color: #ffffff;
-    border: none;
-    border-radius: 50px;
+.input-element {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 16px;
+}
+
+.result-value {
+    font-size: 18px;
+    color: #333;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #007bff;
     cursor: pointer;
+    font-size: 16px;
     transition: background-color 0.3s ease;
-    flex: 1;
-    text-align: center;
 }
 
-.action-button:hover {
-    background-color: #059669;
-}
-
-.action-button:disabled {
-    background-color: #9ca3af;
+.action-btn:disabled {
+    background-color: #ccc;
     cursor: not-allowed;
+}
+
+.action-btn:hover:not(:disabled) {
+    background-color: #0056b3;
 }

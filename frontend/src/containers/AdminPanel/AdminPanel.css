@@ -1,97 +1,197 @@
-.dashboard {
-  padding: 30px;
-  max-width: 1000px;
-  margin: 0 auto;
-  background-color: #2e2e2e;
-  color: #f5f5f5;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+.admin-panel {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f4f8;
+  min-height: 100vh;
 }
 
-.dashboard-header {
+.panel-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-.dashboard-header h1 {
+.header-title {
   font-size: 28px;
-  color: #50ffb6;
+  color: #333;
 }
-/* Основные стили кнопок */
-.export-btn,
-.edit-btn,
-.delete-btn {
-  display: inline-block;
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #ffffff;
-  background-color: #50ffa2;
+
+.btn-export {
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  border-radius: 50px;
+  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  outline: none;
-  position: relative;
-  overflow: hidden;
+  transition: background 0.3s;
 }
 
-.export-btn:hover,
-.edit-btn:hover,
-.delete-btn:hover {
-  background-color: #e66333;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  transform: translateY(-3px);
+.btn-export:hover {
+  background-color: #0056b3;
 }
 
-.export-btn:active,
-.edit-btn:active,
-.delete-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+.form-section {
+  margin-bottom: 20px;
 }
 
-/* Стили для edit и delete кнопок */
-.edit-btn {
-  background-color: #fff200;
+.status-message {
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: center;
 }
 
-.edit-btn:hover {
-  background-color: #00c3e5;
+.status-loading {
+  color: #007bff;
 }
 
-.delete-btn {
-  background-color: #36f4ab;
+.status-error {
+  color: #dc3545;
 }
 
-.delete-btn:hover {
-  background-color: #2fd3b5;
+.calculations-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-/* Дополнительные эффекты */
-.export-btn::before,
-.edit-btn::before,
-.delete-btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300%;
-  height: 300%;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transition: all 0.5s ease;
-  transform: translate(-50%, -50%) scale(0);
+.calc-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-.export-btn:hover::before,
-.edit-btn:hover::before,
-.delete-btn:hover::before {
-  transform: translate(-50%, -50%) scale(1);
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
+.card-title {
+  font-size: 20px;
+  color: #333;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-edit, .btn-delete {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-edit {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.btn-edit:hover {
+  background-color: #138496;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.card-details p {
+  margin: 5px 0;
+}
+
+.no-data {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+}
+.calc-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 15px;
+  transition: box-shadow 0.3s ease;
+}
+
+.calc-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.card-cost {
+  font-size: 18px;
+  color: #4CAF50;
+  margin: 5px 0;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-edit, .btn-delete {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+}
+
+.btn-edit {
+  background-color: #2196F3;
+}
+
+.btn-edit:hover {
+  background-color: #1976D2;
+}
+
+.btn-delete {
+  background-color: #f44336;
+}
+
+.btn-delete:hover {
+  background-color: #d32f2f;
+}
+
+.card-body {
+  padding: 10px 0;
+}
+
+.card-body p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.card-body strong {
+  font-weight: bold;
+}

@@ -11,12 +11,15 @@ const RegisterForm = () => {
     const loading = useSelector(state => state.users.registerLoading);
 
     const [formData, setFormData] = useState({
+        username: '',
         email: '',
         password: '',
-        displayName: '',
+        confirmPassword: '',
+        displayName: '', // Добавляем новое поле
     });
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
 
     useEffect(() => {
         return () => {
@@ -31,6 +34,10 @@ const RegisterForm = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+        if (formData.password !== formData.confirmPassword) {
+            alert('Пароли не совпадают');
+            return;
+        }
         await dispatch(registerUser(formData));
         navigate('/');
     };
@@ -39,11 +46,15 @@ const RegisterForm = () => {
         setIsPasswordVisible(prev => !prev);
     };
 
+    const toggleConfirmPasswordVisibility = () => {
+        setIsConfirmPasswordVisible(prev => !prev);
+    };
+
     return (
         <section className="auth-container">
             <div className="auth-content">
-                <h2 className="auth-heading">Создать аккаунт</h2>
-                <p className="auth-subheading">Заполните форму для регистрации.</p>
+                <h1 className="auth-heading">Регистрация нового аккаунта</h1>
+                <p className="auth-subheading">Пожалуйста, заполните информацию для создания нового аккаунта.</p>
 
                 {error && <div className="auth-error">{error.error}</div>}
 
@@ -53,6 +64,18 @@ const RegisterForm = () => {
                             type="text"
                             name="displayName"
                             value={formData.displayName}
+                            onChange={handleInputChange}
+                            placeholder="Отображаемое имя"
+                            className="auth-input"
+                            required
+                        />
+                    </div>
+
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            name="username"
+                            value={formData.username}
                             onChange={handleInputChange}
                             placeholder="Имя пользователя"
                             className="auth-input"
@@ -87,6 +110,24 @@ const RegisterForm = () => {
                             onClick={togglePasswordVisibility}
                         >
                             {isPasswordVisible ? 'Скрыть' : 'Показать'}
+                        </span>
+                    </div>
+
+                    <div className="input-group password-group">
+                        <input
+                            type={isConfirmPasswordVisible ? 'text' : 'password'}
+                            name="confirmPassword"
+                            value={formData.confirmPassword}
+                            onChange={handleInputChange}
+                            placeholder="Подтвердите пароль"
+                            className="auth-input"
+                            required
+                        />
+                        <span
+                            className="toggle-password"
+                            onClick={toggleConfirmPasswordVisibility}
+                        >
+                            {isConfirmPasswordVisible ? 'Скрыть' : 'Показать'}
                         </span>
                     </div>
 

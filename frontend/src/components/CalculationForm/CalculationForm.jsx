@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import '../../containers/AdminPanel/AdminPanel.css';
 import { createCalculation, editCalculation } from "../../store/actions/adminActions";
-import './CalculationForm.css';
 
 const CalculationForm = ({ currentCalculation, setCurrentCalculation }) => {
     const [formData, setFormData] = useState({
