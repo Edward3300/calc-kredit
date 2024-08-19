@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCalculations, deleteCalculation } from "../../store/actions/adminActions";
-import CalculationForm from '../../components/CalculationForm';
+import CalculationForm from '../../components/CalculationForm/CalculationForm';
 import './AdminPanel.css';
 
 const AdminDashboard = () => {

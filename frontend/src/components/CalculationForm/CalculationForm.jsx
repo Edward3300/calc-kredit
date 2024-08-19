@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
-import '../containers/AdminPanel/AdminPanel.css';
-import {createCalculation, editCalculation} from "../store/actions/adminActions";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createCalculation, editCalculation } from "../../store/actions/adminActions";
+import './CalculationForm.css';
 
 const CalculationForm = ({ currentCalculation, setCurrentCalculation }) => {
     const [formData, setFormData] = useState({
@@ -66,7 +66,7 @@ const CalculationForm = ({ currentCalculation, setCurrentCalculation }) => {
 
     return (
         <form onSubmit={handleSubmit} className="calculation-form">
-            <h3>{currentCalculation ? 'Редактировать расчет' : 'Создать новый расчет'}</h3>
+            <h3>{currentCalculation ? 'Редактировать условия кредита' : 'Создать новый расчет'}</h3>
             <select
                 name="type"
                 value={formData.type}
@@ -74,18 +74,19 @@ const CalculationForm = ({ currentCalculation, setCurrentCalculation }) => {
                 required
                 className="select-field"
             >
-                <option value="" disabled>Выберите тип кредита</option>
-                <option value="Ипотека">Ипотека</option>
-                <option value="Автокредит">Автокредит</option>
-                <option value="Потребительский кредит">Потребительский кредит</option>
+                <option value="" disabled>Выберите тип займа</option>
+                <option value="Ипотека">Ипотечный займ</option>
+                <option value="Автокредит">Кредит на автомобиль</option>
+                <option value="Потребительский кредит">Потребительский займ</option>
             </select>
             <input
                 type="number"
                 name="cost"
-                placeholder="Сумма кредита"
+                placeholder="Сумма займа"
                 value={formData.cost}
                 onChange={handleChange}
                 required
+                className="input-field"
             />
             <input
                 type="number"
@@ -94,27 +95,34 @@ const CalculationForm = ({ currentCalculation, setCurrentCalculation }) => {
                 value={formData.initialPayment}
                 onChange={handleChange}
                 required
+                className="input-field"
             />
             <input
                 type="number"
                 name="term"
-                placeholder="Срок кредита"
+                placeholder="Срок займа (в месяцах)"
                 value={formData.term}
                 onChange={handleChange}
                 required
+                className="input-field"
             />
             <input
                 type="number"
                 name="interestRate"
-                placeholder="Процентная ставка"
+                placeholder="Процентная ставка (%)"
                 value={formData.interestRate}
                 onChange={handleChange}
                 required
+                className="input-field"
             />
             <div className="form-buttons">
-                <button type="submit" className="save-button">{currentCalculation ? 'Сохранить изменения' : 'Создать'}</button>
+                <button type="submit" className="save-button">
+                    {currentCalculation ? 'Сохранить изменения' : 'Добавить расчет'}
+                </button>
                 {currentCalculation && (
-                    <button type="button" className="cancel-button" onClick={handleCancel}>Отменить</button>
+                    <button type="button" className="cancel-button" onClick={handleCancel}>
+                        Отменить
+                    </button>
                 )}
             </div>
         </form>
