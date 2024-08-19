@@ -1,0 +1,126 @@
+/* Общие стили */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #eef2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.new-calculator-wrapper {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+.new-calculator-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.loan-type {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.interest-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.interest-rate {
+    font-size: 36px;
+    color: #e74c3c;
+}
+
+.interest-label {
+    font-size: 14px;
+    color: #777;
+}
+
+.new-calculator-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-label {
+    font-size: 16px;
+    color: #555;
+}
+
+.input-field {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.output-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.output-item {
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.output-label {
+    font-size: 16px;
+    color: #555;
+}
+
+.output-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.action-button {
+    padding: 15px 25px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
+.action-button:hover:not(:disabled) {
+    background-color: #2980b9;
+}

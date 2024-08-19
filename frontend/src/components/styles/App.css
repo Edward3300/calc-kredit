@@ -1,206 +1,166 @@
-/* Общие стили для всего документа */
-* {
-    font-family: Helvetica, Arial, sans-serif;
-    padding: 0;
+/* Общие стили для документа */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
     margin: 0;
-    box-sizing: border-box;
-    font-size: 20px;
+    padding: 0;
 }
 
-/* Основной контейнер для компонента Calc */
-.Calc {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    margin-top: 5%;
+/* Основной контейнер калькулятора */
+.calculator-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-/* Секции ввода и вывода данных */
-.data-section-input,
-.data-section-output {
-    flex: 1;
-    padding: 20px;
+/* Заголовок калькулятора */
+.calculator-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.calculator-header h1 {
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.interest-rate {
+    font-size: 18px;
+    color: #7f8c8d;
+}
+
+.highlight {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Основной блок ввода */
+.calculator-body {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
-.data-section-input {
-    border-right: 2px dotted #ddd; /* Линия разделения между секциями */
-    padding: 1%;
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-/* Заголовки секций */
-h3 {
-    font-size: 28px;
+.input-group label {
+    font-size: 18px;
+    color: #34495e;
 }
 
-/* Цвета для заголовков */
-.title {
-    font-weight: normal;
-    color: #606060;
+.input-field {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #bdc3c7;
 }
 
-/* Цвета для блоков */
-.blue {
-    background-color: #e0efff;
-}
-
-.grey {
-    background-color: #f6f6f6;
-}
-
-/* Стили для значений диапазона */
-.value {
-    &-from-cost,
-    &-to-cost {
-        color: #808080;
-        font-weight: 100;
-    }
-}
-
-/* Стили для input[type="number"] */
-input[type="number"] {
-    display: block;
-    width: 100%;
-    margin: 0.8em auto;
-    text-align: center;
-    font-size: 48px;
-    border: none;
-}
-
-/* Стили для input[type="range"] */
-input[type="range"] {
-    width: 100%;
-    margin: 2em auto;
+.slider {
     -webkit-appearance: none;
-    background: transparent;
+    width: 100%;
+    height: 6px;
+    background: #bdc3c7;
+    outline: none;
+    border-radius: 5px;
+    margin-top: 5px;
 }
 
-/* Ползунок слайдера */
-input[type="range"]::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 26px;
-    height: 26px;
-    background: #548FD4;
+    width: 20px;
+    height: 20px;
+    background: #3498db;
     cursor: pointer;
     border-radius: 50%;
-    position: relative;
-    margin-top: -9px;
 }
 
-/* Трек слайдера */
-input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 8px;
-    background: #F0F0F0;
-    border-radius: 5px;
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #3498db;
+    cursor: pointer;
+    border-radius: 50%;
 }
 
-/* Контейнер для правильного выравнивания элементов */
-.div2 {
+/* Блок вывода */
+.output-group {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    gap: 15px;
 }
 
-/* Контейнер для значений стоимости */
-.value-cost {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-/* Стили для блоков информации */
-.info-value {
-    width: 50%;
-    height: 100px;
-    padding: 10px;
-    text-align: center;
-}
-
-.info-value-block {
-    display: flex;
-    padding-bottom: 5%;
-    gap: 5%;
-    justify-content: space-between;
-    margin-top: 8em;
-}
-
-/* Стили для кнопки расчета */
-.styleButton {
-    padding: 10px 20px;
-    border: 2px solid #548FD4;
-    background-color: #ffffff;
-    color: #000000;
-    cursor: pointer;
-    border-radius: 5px;
+.output-item {
     font-size: 20px;
-    width: 100%;
-    height: 80px;
-}
-
-/* Контейнер для кнопок переключения калькуляторов */
-.calculator-buttons {
     display: flex;
-    padding: 0 25%;
     justify-content: space-between;
+    padding: 10px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
 }
 
-/* Линия между кнопками */
-.line-between {
-    width: 1px;
-    height: 50px;
-    background-color: #548FD4;
+.output-item strong {
+    font-size: 22px;
+    color: #2c3e50;
 }
 
-/* Стили для кнопок переключения */
-.link-button {
-    color: #2c629f;
-    background-color: #fff;
-    text-decoration: underline;
+/* Кнопки действий */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.calculate-btn {
+    padding: 15px 30px;
+    background-color: #3498db;
+    color: #ffffff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
 }
 
-/* Стили для заголовка и вывода */
-.head-output {
-    display: flex;
-    justify-content: space-between;
-    padding-right: 10px;
-}
-/* Пример медиазапроса для мобильных устройств */
-@media (max-width: 768px) {
-    .Calc {
-        flex-direction: column;
-        margin-top: 10%;
-    }
-
-    .data-section-input, .data-section-output {
-        padding: 10px;
-        width: 100%;
-    }
-
-    input[type="number"], input[type="range"] {
-        width: 100%;
-        font-size: 18px;
-    }
-
-    .styleButton {
-        font-size: 24px;
-        height: 60px;
-    }
+.calculate-btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
 }
 
+.calculate-btn:hover:not(:disabled) {
+    background-color: #2980b9;
+}
+
+.email-btn {
+    padding: 15px 30px;
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.email-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Модальное окно */
 .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -208,24 +168,51 @@ input[type="range"]::-webkit-slider-runnable-track {
 }
 
 .modal-content {
-    background-color: white;
+    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     text-align: center;
-    width: 300px;
+    width: 350px;
 }
 
 .modal-content input {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    box-sizing: border-box;
+    padding: 12px;
+    margin: 15px 0;
+    font-size: 16px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
 }
 
 .modal-content button {
-    padding: 10px 20px;
-    margin: 5px;
+    padding: 12px 20px;
+    margin-top: 10px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
+.modal-content button:hover {
+    background-color: #2980b9;
+}
+
+/* Медиазапросы */
+@media (max-width: 768px) {
+    .calculator-container {
+        padding: 20px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .calculate-btn, .email-btn {
+        width: 100%;
+    }
+}

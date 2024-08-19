@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './../styles/App.css';
+import './styles/App.css';
 
 function EmailModal({ show, onClose, onSend, isSending, isSent, error }) {
     const [email, setEmail] = useState('');

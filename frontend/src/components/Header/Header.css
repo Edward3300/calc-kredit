@@ -1,0 +1,233 @@
+.new-header {
+  background-color: #d3c6c6; /* Темный фон */
+  color: #0e0d0d;
+  padding: 20px 40px;
+  border-bottom: 3px solid #402b23;
+}
+
+.new-header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.new-header__brand {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.new-header__logo {
+  color: #ff7f50;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.new-header__logo:hover {
+  color: #151111;
+}
+
+.new-header__auth {
+  display: flex;
+  align-items: center;
+}
+
+.new-header__auth-links {
+  display: flex;
+  gap: 20px;
+}
+
+.new-header__auth-link {
+  color: #615858;
+  text-decoration: none;
+  font-size: 18px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.new-header__auth-link:hover {
+  border-color: #ff7f50;
+}
+
+.new-header__logout {
+  background-color: #ff7f50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.new-header__logout:hover {
+  background-color: #e66333;
+}
+
+.new-header__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-header__admin-link {
+  font-size: 18px;
+  color: #f3e8e8;
+  text-decoration: none;
+  background-color: #333333;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.new-header__admin-link:hover {
+  background-color: #444444;
+}
+
+.new-header__nav {
+  display: flex;
+  gap: 25px;
+}
+
+.new-header__nav-link {
+  font-size: 20px;
+  color: #ff7f50;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.new-header__nav-link:hover {
+  border-color: #ffffff;
+}
+
+/* Кнопки */
+.new-button {
+  background-color: #ff7f50;
+  color: #ffffff;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.new-button:hover {
+  background-color: #e66333;
+}
+
+.new-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Карточки */
+.new-card {
+  background-color: #2c2c2c;
+  color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.new-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Поля ввода */
+.new-input {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  border: 1px solid #444444;
+  padding: 12px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.new-input:focus {
+  border-color: #ff7f50;
+  outline: none;
+}
+
+.new-input::placeholder {
+  color: #888888;
+}
+
+/* Заголовки */
+.new-heading {
+  color: #f0f0f0;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 3px solid #ff7f50;
+  padding-bottom: 10px;
+}
+
+/* Ссылки */
+.new-link {
+  color: #ff7f50;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.new-link:hover {
+  color: #ffffff;
+}
+
+.new-link--inverse {
+  color: #f0f0f0;
+  text-decoration: underline;
+}
+
+.new-link--inverse:hover {
+  color: #ff7f50;
+}
+
+/* Модальные окна */
+.new-modal {
+  background-color: #2c2c2c;
+  color: #f0f0f0;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  margin: auto;
+  position: relative;
+}
+
+.new-modal__header {
+  font-size: 20px;
+  border-bottom: 2px solid #ff7f50;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.new-modal__body {
+  margin-bottom: 20px;
+}
+
+.new-modal__footer {
+  text-align: right;
+}
+
+.new-modal__button {
+  background-color: #ff7f50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.new-modal__button:hover {
+  background-color: #e66333;
+}
