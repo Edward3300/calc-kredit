@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearRegisterErrors, loginUser } from '../../store/actions/usersActions';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.css';
+import './Auth.css';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -26,13 +26,16 @@ const Login = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        try{
-            await dispatch(loginUser(formData));
-            navigate('/');
-        }catch (e) {
-            throw e;
+        try {
+            const response = await dispatch(loginUser(formData));
+            if (response.error) {
+                // Error message is already handled by Redux store and displayed below
+                return;
+            }
+            navigate('/'); // Only navigate if no error
+        } catch (e) {
+            console.error(e);
         }
-
     };
 
     const togglePasswordVisibility = () => {
@@ -40,57 +43,49 @@ const Login = () => {
     };
 
     return (
-        <section className="auth-container">
-            <div className="auth-content">
-                <h1 className="auth-heading">Вход в систему</h1>
-                <p className="auth-subheading">Введите ваши данные для входа в систему.</p>
+        <div className="auth-page">
+            <div className="auth-container">
+                <h2 className="auth-title">Login to GameZone</h2>
+                <p className="auth-subtitle">Access your personalized dashboard.</p>
 
                 {error && <div className="auth-error">{error.error}</div>}
 
                 <form onSubmit={handleFormSubmit} className="auth-form">
-                    <div className="input-group">
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            placeholder="Электронная почта"
-                            className="auth-input"
-                            required
-                        />
-                    </div>
-
-                    <div className="input-group password-group">
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Email Address"
+                        required
+                        className="auth-input"
+                    />
+                    <div className="password-container">
                         <input
                             type={isPasswordVisible ? 'text' : 'password'}
                             name="password"
                             value={formData.password}
                             onChange={handleInputChange}
-                            placeholder="Пароль"
-                            className="auth-input"
+                            placeholder="Password"
                             required
+                            className="auth-input"
                         />
-                        <span
-                            className="toggle-password"
-                            onClick={togglePasswordVisibility}
-                        >
-                            {isPasswordVisible ? 'Скрыть' : 'Показать'}
+                        <span className="password-toggle" onClick={togglePasswordVisibility}>
+                            {isPasswordVisible ? 'Hide' : 'Show'}
                         </span>
                     </div>
 
-                    <button type="submit" className="auth-submit-button" disabled={loading}>
-                        {loading ? 'Вход...' : 'Войти'}
+                    <button type="submit" className="auth-button" disabled={loading}>
+                        {loading ? 'Logging in...' : 'Login'}
                     </button>
                 </form>
 
                 <div className="auth-footer">
-                    <span>Нет аккаунта?</span>
-                    <Link to="/register" className="auth-link">
-                        Зарегистрироваться
-                    </Link>
+                    <span>New to GameZone?</span>
+                    <Link to="/register" className="auth-link">Create an account</Link>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

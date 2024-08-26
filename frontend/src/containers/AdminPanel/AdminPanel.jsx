@@ -36,15 +36,15 @@ const AdminDashboard = () => {
             a.click();
             document.body.removeChild(a);
         } catch (error) {
-            console.error('Ошибка экспорта данных:', error);
+            console.error('Error exporting data:', error);
         }
     };
 
     return (
         <section className="admin-dashboard">
             <header className="dashboard-header">
-                <h1 className="header-title">Панель Администратора</h1>
-                <button className="btn-export" onClick={handleExport}>Экспортировать данные</button>
+                <h1 className="header-title">Admin Dashboard</h1>
+                <button className="export-button" onClick={handleExport}>Export Data</button>
             </header>
 
             <CalculationForm
@@ -52,23 +52,23 @@ const AdminDashboard = () => {
                 setCurrentCalculation={setSelectedCalculation}
             />
 
-            {loading && <p className="status-message status-loading">Загрузка данных...</p>}
-            {error && <p className="status-message status-error">Ошибка: {error}</p>}
+            {loading && <p className="status-message loading">Loading...</p>}
+            {error && <p className="status-message error">Error: {error}</p>}
 
-            <div className="calculations-table-container">
-                <table className="calculations-table">
+            <div className="table-container">
+                <table className="admin-table">
                     <thead>
                     <tr>
-                        <th>Тип кредита</th>
-                        <th>Сумма кредита</th>
-                        <th>Первоначальный взнос</th>
-                        <th>Срок кредита</th>
-                        <th>Процентная ставка</th>
-                        <th>Ежемесячный платеж</th>
-                        <th>Общая сумма выплат</th>
-                        <th>Необходимый доход</th>
-                        <th>Дата создания</th>
-                        <th>Действия</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Down Payment</th>
+                        <th>Term</th>
+                        <th>Rate</th>
+                        <th>Monthly</th>
+                        <th>Total</th>
+                        <th>Income</th>
+                        <th>Created</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,15 +77,15 @@ const AdminDashboard = () => {
                             <td>{calc.type}</td>
                             <td>{calc.cost.toLocaleString()} ₽</td>
                             <td>{calc.initialPayment.toLocaleString()} ₽</td>
-                            <td>{calc.term} лет</td>
+                            <td>{calc.term} years</td>
                             <td>{calc.interestRate}%</td>
                             <td>{calc.monthlyPayment.toLocaleString()} ₽</td>
                             <td>{calc.totalPayment.toLocaleString()} ₽</td>
                             <td>{calc.requiredIncome.toLocaleString()} ₽</td>
                             <td>{new Date(calc.createdAt).toLocaleDateString()} {new Date(calc.createdAt).toLocaleTimeString()}</td>
                             <td>
-                                <button onClick={() => handleEdit(calc)} className="btn-edit">Редактировать</button>
-                                <button onClick={() => handleDelete(calc._id)} className="btn-delete">Удалить</button>
+                                <button onClick={() => handleEdit(calc)} className="action-button edit-button">Edit</button>
+                                <button onClick={() => handleDelete(calc._id)} className="action-button delete-button">Delete</button>
                             </td>
                         </tr>
                     ))}

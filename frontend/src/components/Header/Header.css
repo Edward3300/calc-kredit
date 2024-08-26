@@ -1,97 +1,91 @@
-.unique-header {
-  background: linear-gradient(45deg, #4A00E0, #8E2DE2);
-  color: #FFFFFF;
+.game-header {
+  background-color: #1A1A2E;
   padding: 20px;
-  font-family: 'Roboto', sans-serif;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.unique-header__wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 5px solid #16213E;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-.unique-header__brand {
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.unique-header__logo {
-  text-decoration: none;
-  color: #FFF700;
-  font-family: 'Orbitron', sans-serif;
-}
-
-.unique-header__navigation {
+.header-background {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   align-items: center;
 }
 
-.unique-header__user-section,
-.unique-header__auth-section {
+.logo-section {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.unique-header__icon {
-  font-size: 24px;
-  color: #FFF700;
+.logo-icon {
+  font-size: 30px;
+  color: #E94560;
 }
 
-.unique-header__username {
+.site-title {
+  font-size: 24px;
+  color: #E94560;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-info, .auth-options {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.greeting {
+  color: #F4F4F9;
   font-size: 18px;
 }
 
-.unique-header__logout-btn {
-  background-color: #FF4B2B;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 25px;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.unique-header__logout-btn:hover {
-  background-color: #FF6B3B;
-}
-
-.unique-header__auth-btn {
-  background-color: #36D1DC;
-  color: white;
+.nav-button {
+  background-color: #0F3460;
+  color: #F4F4F9;
   padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 5px;
-  transition: background-color 0.3s ease;
+  gap: 8px;
 }
 
-.unique-header__auth-btn:hover {
-  background-color: #5BD3E5;
+.nav-button:hover {
+  background-color: #E94560;
 }
 
-.unique-header__admin {
-  margin-left: 20px;
+.admin-panel-link {
+  position: absolute;
+  right: 30px;
+  top: 15px;
 }
 
-.unique-header__admin-link {
-  color: #FFF700;
+.admin-button {
+  color: #F4F4F9;
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
+  background-color: #16213E;
+  padding: 8px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.unique-header__admin-link:hover {
-  text-decoration: underline;
+.admin-button:hover {
+  background-color: #0F3460;
 }

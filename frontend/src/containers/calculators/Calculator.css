@@ -1,106 +1,113 @@
-.new-calculator-container {
-    background-color: #f0f4f8;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+.calculator-container {
+    background-color: #0F3460;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     max-width: 600px;
-    margin: 0 auto;
+    margin: 40px auto;
+    font-family: 'Press Start 2P', cursive;
+    color: #F4F4F9;
 }
 
-.new-calculator-header {
+.calculator-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-.new-calculator-title {
+.calculator-title {
     font-size: 24px;
-    color: #333;
+    color: #E94560;
 }
 
-.new-calculator-subtitle {
-    font-size: 18px;
-    color: #666;
+.loan-description {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #F4F4F9;
 }
 
-.new-loan-type {
-    font-weight: bold;
-}
-
-.new-calculator-body {
+.calculator-body {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
-.new-input-container {
+.input-section {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.new-input-field {
+.input-group {
     display: flex;
     flex-direction: column;
 }
 
-.new-input-label {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.input-label {
+    font-size: 14px;
+    color: #F4F4F9;
+    margin-bottom: 8px;
 }
 
-.new-input-element {
-    padding: 10px;
+.input-field {
+    padding: 12px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #E94560;
+    border-radius: 8px;
+    background-color: #1A1A2E;
+    color: #F4F4F9;
 }
 
-.new-results-container {
+.result-section {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
-.new-result-item {
+.result-item {
     display: flex;
     justify-content: space-between;
-    font-size: 16px;
-    color: #333;
+    font-size: 18px;
+    color: #F4F4F9;
 }
 
-.new-result-label {
+.result-label {
     font-weight: bold;
 }
 
-.new-result-value {
+.result-value {
     font-weight: bold;
-    color: #00C853;
+    color: #E94560;
 }
 
-.new-actions-container {
+.action-section {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.new-action-btn {
-    background-color: #00C853;
-    color: white;
-    padding: 10px 20px;
+.action-button {
+    padding: 14px 25px;
     font-size: 16px;
-    border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+    border: none;
+    color: #F4F4F9;
+    background-color: #16213E;
+    transition: background-color 0.3s ease;
 }
 
-.new-action-btn:hover {
-    background-color: #00A944;
+.calculate-button {
+    background-color: #E94560;
 }
 
-.new-action-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+.reset-button {
+    background-color: #0F3460;
+}
+
+.action-button:hover {
+    background-color: #1A1A2E;
 }

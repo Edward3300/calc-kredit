@@ -1,197 +1,147 @@
-.admin-panel {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f0f4f8;
-  min-height: 100vh;
+.admin-dashboard {
+  padding: 50px;
+  background-color: #1A1A2E;
+  color: #F4F4F9;
+  font-family: 'Press Start 2P', cursive;
 }
 
-.panel-header {
+.dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  border-bottom: 3px solid #E94560;
+  padding-bottom: 15px;
 }
 
 .header-title {
   font-size: 28px;
-  color: #333;
+  color: #E94560;
 }
 
-.btn-export {
-  background-color: #007bff;
-  color: #fff;
+.export-button {
+  padding: 12px 25px;
+  background-color: #0F3460;
+  color: white;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
 }
 
-.btn-export:hover {
-  background-color: #0056b3;
+.export-button:hover {
+  background-color: #16213E;
 }
 
-.form-section {
+.form-container {
+  background-color: #0F3460;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 40px;
+}
+
+.form-container h3 {
+  font-size: 22px;
   margin-bottom: 20px;
+  color: #E94560;
+}
+
+.form-select, .form-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 2px solid #E94560;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #1A1A2E;
+  color: #F4F4F9;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.submit-button, .cancel-button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: #F4F4F9;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button {
+  background-color: #E94560;
+}
+
+.cancel-button {
+  background-color: #0F3460;
+}
+
+.submit-button:hover, .cancel-button:hover {
+  background-color: #1A1A2E;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: #F4F4F9;
+}
+
+.admin-table thead {
+  background-color: #E94560;
+}
+
+.admin-table th, .admin-table td {
+  padding: 14px;
+  border: 2px solid #16213E;
+  text-align: left;
+}
+
+.edit-button, .delete-button {
+  padding: 8px 15px;
+  border-radius: 10px;
+  border: none;
+  color: #F4F4F9;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button {
+  background-color: #FFC107;
+}
+
+.delete-button {
+  background-color: #E94560;
+}
+
+.edit-button:hover, .delete-button:hover {
+  background-color: #1A1A2E;
 }
 
 .status-message {
-  margin: 20px 0;
-  font-size: 16px;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 25px;
   text-align: center;
+  font-size: 16px;
 }
 
-.status-loading {
-  color: #007bff;
-}
-
-.status-error {
-  color: #dc3545;
-}
-
-.calculations-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.calc-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.card-title {
-  font-size: 20px;
+.status-message.loading {
+  background-color: #FFC107;
   color: #333;
 }
 
-.card-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-edit, .btn-delete {
-  border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.btn-edit {
-  background-color: #17a2b8;
-  color: #fff;
-}
-
-.btn-edit:hover {
-  background-color: #138496;
-}
-
-.btn-delete {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-.btn-delete:hover {
-  background-color: #c82333;
-}
-
-.card-details p {
-  margin: 5px 0;
-}
-
-.no-data {
-  text-align: center;
-  font-size: 16px;
-  color: #666;
-}
-.calc-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  padding: 15px;
-  transition: box-shadow 0.3s ease;
-}
-
-.calc-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.card-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-}
-
-.card-title {
-  font-size: 20px;
-  margin: 0;
-  font-weight: bold;
-}
-
-.card-cost {
-  font-size: 18px;
-  color: #4CAF50;
-  margin: 5px 0;
-}
-
-.card-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-edit, .btn-delete {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #fff;
-}
-
-.btn-edit {
-  background-color: #2196F3;
-}
-
-.btn-edit:hover {
-  background-color: #1976D2;
-}
-
-.btn-delete {
-  background-color: #f44336;
-}
-
-.btn-delete:hover {
-  background-color: #d32f2f;
-}
-
-.card-body {
-  padding: 10px 0;
-}
-
-.card-body p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-.card-body strong {
-  font-weight: bold;
+.status-message.error {
+  background-color: #E94560;
+  color: white;
 }

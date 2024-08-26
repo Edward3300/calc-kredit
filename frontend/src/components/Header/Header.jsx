@@ -2,45 +2,45 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/actions/usersActions";
-import { FaUserAstronaut, FaDoorOpen, FaSignInAlt, FaUserShield } from "react-icons/fa";
 import "./Header.css";
+import { GiGamepad, GiExitDoor, GiEntryDoor, GiCheckedShield } from "react-icons/gi";
 
 function Header() {
     const user = useSelector((state) => state.users.user);
     const dispatch = useDispatch();
 
     return (
-        <header className="unique-header">
-            <div className="unique-header__wrapper">
-                <div className="unique-header__brand">
-                    <Link to="/" className="unique-header__logo">AstroFinance</Link>
+        <header className="game-header">
+            <div className="header-background">
+                <div className="logo-section">
+                    <GiGamepad className="logo-icon" />
+                    <Link to="/" className="site-title">CalculateZone</Link>
                 </div>
-                <nav className="unique-header__navigation">
+                <nav className="navigation">
                     {user ? (
-                        <div className="unique-header__user-section">
-                            <FaUserAstronaut className="unique-header__icon" />
-                            <span className="unique-header__username">{user.name}</span>
+                        <div className="user-info">
+                            <span className="greeting">Hello, <strong>{user.name}</strong>!</span>
                             <button
-                                className="unique-header__logout-btn"
+                                className="nav-button exit-button"
                                 onClick={() => dispatch(logoutUser())}
                             >
-                                <FaDoorOpen /> Выйти
+                                <GiExitDoor /> Sign Out
                             </button>
                         </div>
                     ) : (
-                        <div className="unique-header__auth-section">
-                            <Link to="/login" className="unique-header__auth-btn">
-                                <FaSignInAlt /> Вход
+                        <div className="auth-options">
+                            <Link to="/login" className="nav-button login-button">
+                                <GiEntryDoor /> Log In
                             </Link>
-                            <Link to="/register" className="unique-header__auth-btn">
-                                <FaUserShield /> Регистрация
+                            <Link to="/register" className="nav-button signup-button">
+                                <GiCheckedShield /> Register
                             </Link>
                         </div>
                     )}
                 </nav>
                 {user && user.role === 'admin' && (
-                    <div className="unique-header__admin">
-                        <Link to="/admin" className="unique-header__admin-link">Управление</Link>
+                    <div className="admin-panel-link">
+                        <Link to="/admin" className="admin-button">Admin Dashboard</Link>
                     </div>
                 )}
             </div>

@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import '../../containers/AdminPanel/AdminPanel.css';
 import { createCalculation, editCalculation } from "../../store/actions/adminActions";
+import './CalculationForm.css';
 
 const CalculationForm = ({ currentCalculation, setCurrentCalculation }) => {
     const [formData, setFormData] = useState({
-        type: '',
-        cost: '',
-        initialPayment: '',
-        term: '',
-        interestRate: '',
+        loanCategory: '',
+        loanAmount: '',
+        downPayment: '',
+        duration: '',
+        rate: '',
     });
 
     useEffect(() => {
         if (currentCalculation) {
             setFormData({
-                type: currentCalculation.type,
-                cost: currentCalculation.cost,
-                initialPayment: currentCalculation.initialPayment,
-                term: currentCalculation.term,
-                interestRate: currentCalculation.interestRate,
+                loanCategory: currentCalculation.type,
+                loanAmount: currentCalculation.cost,
+                downPayment: currentCalculation.initialPayment,
+                duration: currentCalculation.term,
+                rate: currentCalculation.interestRate,
             });
         }
     }, [currentCalculation]);
@@ -36,18 +36,26 @@ const CalculationForm = ({ currentCalculation, setCurrentCalculation }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const calculationData = {
+            type: formData.loanCategory,
+            cost: formData.loanAmount,
+            initialPayment: formData.downPayment,
+            term: formData.duration,
+            interestRate: formData.rate,
+        };
+
         if (currentCalculation) {
-            dispatch(editCalculation(currentCalculation._id, formData));
+            dispatch(editCalculation(currentCalculation._id, calculationData));
         } else {
-            dispatch(createCalculation(formData));
+            dispatch(createCalculation(calculationData));
         }
 
         setFormData({
-            type: '',
-            cost: '',
-            initialPayment: '',
-            term: '',
-            interestRate: '',
+            loanCategory: '',
+            loanAmount: '',
+            downPayment: '',
+            duration: '',
+            rate: '',
         });
 
         setCurrentCalculation(null);
@@ -55,73 +63,73 @@ const CalculationForm = ({ currentCalculation, setCurrentCalculation }) => {
 
     const handleCancel = () => {
         setFormData({
-            type: '',
-            cost: '',
-            initialPayment: '',
-            term: '',
-            interestRate: '',
+            loanCategory: '',
+            loanAmount: '',
+            downPayment: '',
+            duration: '',
+            rate: '',
         });
         setCurrentCalculation(null);
     };
 
     return (
-        <form onSubmit={handleSubmit} className="calculation-form">
-            <h3>{currentCalculation ? 'Редактировать условия кредита' : 'Создать новый расчет'}</h3>
+        <form onSubmit={handleSubmit} className="form-container">
+            <h3>{currentCalculation ? 'Update Loan' : 'New Loan'}</h3>
             <select
-                name="type"
-                value={formData.type}
+                name="loanCategory"
+                value={formData.loanCategory}
                 onChange={handleChange}
                 required
-                className="select-field"
+                className="form-select"
             >
-                <option value="" disabled>Выберите тип займа</option>
-                <option value="Ипотека">Ипотечный займ</option>
-                <option value="Автокредит">Кредит на автомобиль</option>
-                <option value="Потребительский кредит">Потребительский займ</option>
+                <option value="" disabled>Select Loan Type</option>
+                <option value="Mortgage">Mortgage</option>
+                <option value="AutoLoan">Auto Loan</option>
+                <option value="PersonalLoan">Personal Loan</option>
             </select>
             <input
                 type="number"
-                name="cost"
-                placeholder="Сумма займа"
-                value={formData.cost}
+                name="loanAmount"
+                placeholder="Loan Amount"
+                value={formData.loanAmount}
                 onChange={handleChange}
                 required
-                className="input-field"
+                className="form-input"
             />
             <input
                 type="number"
-                name="initialPayment"
-                placeholder="Первоначальный взнос"
-                value={formData.initialPayment}
+                name="downPayment"
+                placeholder="Down Payment"
+                value={formData.downPayment}
                 onChange={handleChange}
                 required
-                className="input-field"
+                className="form-input"
             />
             <input
                 type="number"
-                name="term"
-                placeholder="Срок займа (в месяцах)"
-                value={formData.term}
+                name="duration"
+                placeholder="Duration (months)"
+                value={formData.duration}
                 onChange={handleChange}
                 required
-                className="input-field"
+                className="form-input"
             />
             <input
                 type="number"
-                name="interestRate"
-                placeholder="Процентная ставка (%)"
-                value={formData.interestRate}
+                name="rate"
+                placeholder="Interest Rate (%)"
+                value={formData.rate}
                 onChange={handleChange}
                 required
-                className="input-field"
+                className="form-input"
             />
             <div className="form-buttons">
-                <button type="submit" className="save-button">
-                    {currentCalculation ? 'Сохранить изменения' : 'Добавить расчет'}
+                <button type="submit" className="submit-button">
+                    {currentCalculation ? 'Save Changes' : 'Add Loan'}
                 </button>
                 {currentCalculation && (
                     <button type="button" className="cancel-button" onClick={handleCancel}>
-                        Отменить
+                        Cancel
                     </button>
                 )}
             </div>

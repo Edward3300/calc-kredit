@@ -1,79 +1,69 @@
-.home-container {
+.game-home-container {
     display: flex;
-    height: 100vh;
-    background-color: #f4f4f9;
-    font-family: 'Montserrat', sans-serif;
-    color: #2e3440;
+    background: linear-gradient(135deg, #1A1A2E, #16213E);
+    min-height: 100vh;
+    color: #F4F4F9;
+    font-family: 'Press Start 2P', cursive;
 }
 
-.sidebar {
-    width: 300px;
-    background-color: #292b36;
+.game-sidebar {
+    width: 250px;
+    background-color: #0F3460;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-right: 5px solid #E94560;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-.calculator-header h1 {
-    color: #10b981;
-    font-size: 24px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.calculator-header p {
-    color: #ffffff;
-    font-size: 16px;
+.game-sidebar-title {
+    font-size: 20px;
+    color: #E94560;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.calculator-list {
+.game-calculator-list {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-.calculator-item {
+.game-calculator-item {
     margin-bottom: 15px;
 }
 
-.calculator-item.active .calculator-link {
-    background-color: #10b981;
-    color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-}
-
-.calculator-link {
+.game-calculator-button {
     width: 100%;
-    padding: 12px;
-    background-color: #2e3440;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    text-align: left;
-    font-size: 18px;
+    padding: 15px;
+    background-color: #1A1A2E;
+    color: #F4F4F9;
+    border: 2px solid #E94560;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.calculator-link:hover {
-    background-color: #10b981;
-    color: #ffffff;
-}
-
-.content {
-    flex: 1;
-    padding: 40px;
-    background-color: #ffffff;
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
 }
 
-.calculator-display {
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    background-color: #f9fafb;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.game-calculator-button:hover {
+    background-color: #E94560;
+    color: #1A1A2E;
+}
+
+.game-calculator-item.active .game-calculator-button {
+    background-color: #E94560;
+    color: #1A1A2E;
+}
+
+.calc-label {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.game-content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #0F3460;
+    border-left: 5px solid #E94560;
 }

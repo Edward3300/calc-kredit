@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearRegisterErrors, registerUser } from '../../store/actions/usersActions';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.css';
+import './Auth.css';
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const RegisterForm = () => {
         email: '',
         password: '',
         confirmPassword: '',
-        displayName: '', // Добавляем новое поле
+        displayName: '',
     });
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -35,11 +35,19 @@ const RegisterForm = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         if (formData.password !== formData.confirmPassword) {
-            alert('Пароли не совпадают');
+            alert('Passwords do not match');
             return;
         }
-        await dispatch(registerUser(formData));
-        navigate('/');
+        try {
+            const response = await dispatch(registerUser(formData));
+            if (response.error) {
+                // Error message is already handled by Redux store and displayed below
+                return;
+            }
+            navigate('/'); // Only navigate if no error
+        } catch (e) {
+            console.error(e);
+        }
     };
 
     const togglePasswordVisibility = () => {
@@ -51,99 +59,81 @@ const RegisterForm = () => {
     };
 
     return (
-        <section className="auth-container">
-            <div className="auth-content">
-                <h1 className="auth-heading">Регистрация нового аккаунта</h1>
-                <p className="auth-subheading">Пожалуйста, заполните информацию для создания нового аккаунта.</p>
+        <div className="auth-page">
+            <div className="auth-container">
+                <h2 className="auth-title">Join GameZone</h2>
+                <p className="auth-subtitle">Create your gaming account today.</p>
 
                 {error && <div className="auth-error">{error.error}</div>}
 
                 <form onSubmit={handleFormSubmit} className="auth-form">
-                    <div className="input-group">
-                        <input
-                            type="text"
-                            name="displayName"
-                            value={formData.displayName}
-                            onChange={handleInputChange}
-                            placeholder="Отображаемое имя"
-                            className="auth-input"
-                            required
-                        />
-                    </div>
-
-                    <div className="input-group">
-                        <input
-                            type="text"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleInputChange}
-                            placeholder="Имя пользователя"
-                            className="auth-input"
-                            required
-                        />
-                    </div>
-
-                    <div className="input-group">
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            placeholder="Электронная почта"
-                            className="auth-input"
-                            required
-                        />
-                    </div>
-
-                    <div className="input-group password-group">
+                    <input
+                        type="text"
+                        name="displayName"
+                        value={formData.displayName}
+                        onChange={handleInputChange}
+                        placeholder="Full Name"
+                        required
+                        className="auth-input"
+                    />
+                    <input
+                        type="text"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleInputChange}
+                        placeholder="Username"
+                        required
+                        className="auth-input"
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Email Address"
+                        required
+                        className="auth-input"
+                    />
+                    <div className="password-container">
                         <input
                             type={isPasswordVisible ? 'text' : 'password'}
                             name="password"
                             value={formData.password}
                             onChange={handleInputChange}
-                            placeholder="Пароль"
-                            className="auth-input"
+                            placeholder="Password"
                             required
+                            className="auth-input"
                         />
-                        <span
-                            className="toggle-password"
-                            onClick={togglePasswordVisibility}
-                        >
-                            {isPasswordVisible ? 'Скрыть' : 'Показать'}
+                        <span className="password-toggle" onClick={togglePasswordVisibility}>
+                            {isPasswordVisible ? 'Hide' : 'Show'}
                         </span>
                     </div>
-
-                    <div className="input-group password-group">
+                    <div className="password-container">
                         <input
                             type={isConfirmPasswordVisible ? 'text' : 'password'}
                             name="confirmPassword"
                             value={formData.confirmPassword}
                             onChange={handleInputChange}
-                            placeholder="Подтвердите пароль"
-                            className="auth-input"
+                            placeholder="Confirm Password"
                             required
+                            className="auth-input"
                         />
-                        <span
-                            className="toggle-password"
-                            onClick={toggleConfirmPasswordVisibility}
-                        >
-                            {isConfirmPasswordVisible ? 'Скрыть' : 'Показать'}
+                        <span className="password-toggle" onClick={toggleConfirmPasswordVisibility}>
+                            {isConfirmPasswordVisible ? 'Hide' : 'Show'}
                         </span>
                     </div>
 
-                    <button type="submit" className="auth-submit-button" disabled={loading}>
-                        {loading ? 'Регистрация...' : 'Зарегистрироваться'}
+                    <button type="submit" className="auth-button" disabled={loading}>
+                        {loading ? 'Registering...' : 'Register'}
                     </button>
                 </form>
 
                 <div className="auth-footer">
-                    <span>Уже есть аккаунт?</span>
-                    <Link to="/login" className="auth-link">
-                        Войти
-                    </Link>
+                    <span>Already have an account?</span>
+                    <Link to="/login" className="auth-link">Log in</Link>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

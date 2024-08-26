@@ -1,14 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {calculateLoan, setCalculatorData} from "../../store/actions/calculatorActions";
-import { FaRubleSign, FaCalendarAlt, FaMoneyBillWave } from "react-icons/fa";
 import './Calculator.css';
 
 function Calculator({ interestRate, loanType }) {
     const dispatch = useDispatch();
     const calculator = useSelector(state => state.calculator);
 
-    const handleChange = (e) => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
         const numericValue = Number(value);
 
@@ -17,70 +16,90 @@ function Calculator({ interestRate, loanType }) {
         }
     };
 
+    const handleCalculate = () => {
+        if (calculator.cost > 0 && calculator.term > 0 && calculator.initialPayment >= 0) {
+            dispatch(setCalculatorData({ interestRate, loanType }));
+            dispatch(calculateLoan());
+        } else {
+            alert("Fill out all fields to calculate!");
+        }
+    };
+
+    const handleReset = () => {
+        dispatch(setCalculatorData({
+            cost: '',
+            term: '',
+            initialPayment: '',
+            monthlyPayment: 0,
+            totalPayment: 0,
+            requiredIncome: 0
+        }));
+    };
+
     return (
-        <div className="new-calculator-container">
-            <header className="new-calculator-header">
-                <h1 className="new-calculator-title">Финансовый Ассистент</h1>
-                <div className="new-calculator-subtitle">
-                    <h2 className="new-loan-type">{loanType}</h2>
-                    <p className="new-interest-details">
-                        Процентная ставка: <strong>{interestRate}%</strong>
-                    </p>
-                </div>
-            </header>
-            <div className="new-calculator-body">
-                <div className="new-input-container">
+        <div className="calculator-container">
+            <div className="calculator-header">
+                <h2 className="calculator-title">Loan Estimator</h2>
+                <p className="loan-description">
+                    Calculate your <strong>{loanType}</strong> with a rate of <strong>{interestRate}%</strong>
+                </p>
+            </div>
+            <div className="calculator-body">
+                <div className="input-section">
                     <InputField
-                        label="Введите сумму займа"
+                        label="Loan Amount (up to 10M ₽)"
                         name="cost"
                         value={calculator.cost}
                         min={1}
                         max={10000000}
                         step={1000}
-                        onChange={handleChange}
-                        icon={<FaRubleSign />}
+                        onChange={handleInputChange}
                     />
                     <InputField
-                        label="Выберите срок займа (лет)"
+                        label="Loan Duration (up to 30 years)"
                         name="term"
                         value={calculator.term}
                         min={1}
                         max={30}
                         step={1}
-                        onChange={handleChange}
-                        icon={<FaCalendarAlt />}
+                        onChange={handleInputChange}
                     />
                     <InputField
-                        label="Начальный взнос"
+                        label="Initial Payment (₽)"
                         name="initialPayment"
                         value={calculator.initialPayment || ''}
                         min={0}
-                        onChange={handleChange}
-                        icon={<FaMoneyBillWave />}
+                        onChange={handleInputChange}
                     />
                 </div>
-                <div className="new-results-container">
-                    <ResultItem label="Ежемесячный платёж" value={calculator.monthlyPayment} />
-                    <ResultItem label="Итоговая сумма выплат" value={calculator.totalPayment} />
-                    <ResultItem label="Рекомендуемый доход" value={calculator.requiredIncome} />
+                <div className="result-section">
+                    <ResultItem label="Monthly Payment" value={calculator.monthlyPayment} />
+                    <ResultItem label="Total Payment" value={calculator.totalPayment} />
+                    <ResultItem label="Required Income" value={calculator.requiredIncome} />
                 </div>
-                <div className="new-actions-container">
-                    <ActionButton
-                        onClick={() => dispatch(calculateLoan())}
-                        disabled={calculator.cost <= 0 || calculator.initialPayment <= 0 || calculator.term <= 0}
-                        label="Рассчитать"
-                    />
+                <div className="action-section">
+                    <button
+                        onClick={handleCalculate}
+                        className="action-button calculate-button"
+                        disabled={calculator.cost <= 0 || calculator.initialPayment < 0 || calculator.term <= 0}
+                    >
+                        Estimate
+                    </button>
+                    <button
+                        onClick={handleReset}
+                        className="action-button reset-button"
+                    >
+                        Reset
+                    </button>
                 </div>
             </div>
         </div>
     );
 }
 
-const InputField = ({ label, name, value, min, max, step, onChange, icon }) => (
-    <div className="new-input-field">
-        <label htmlFor={name} className="new-input-label">
-            {icon} {label}
-        </label>
+const InputField = ({ label, name, value, min, max, step, onChange }) => (
+    <div className="input-group">
+        <label htmlFor={name} className="input-label">{label}</label>
         <input
             type="number"
             id={name}
@@ -90,22 +109,16 @@ const InputField = ({ label, name, value, min, max, step, onChange, icon }) => (
             max={max}
             step={step}
             onChange={onChange}
-            className="new-input-element"
+            className="input-field"
         />
     </div>
 );
 
 const ResultItem = ({ label, value }) => (
-    <div className="new-result-item">
-        <span className="new-result-label">{label}</span>
-        <span className="new-result-value">{value ? `${value.toLocaleString()} ₽` : '0 ₽'}</span>
+    <div className="result-item">
+        <span className="result-label">{label}</span>
+        <span className="result-value">{value ? `${value.toLocaleString()} ₽` : '0 ₽'}</span>
     </div>
-);
-
-const ActionButton = ({ onClick, disabled, label }) => (
-    <button onClick={onClick} disabled={disabled} className="new-action-btn">
-        {label}
-    </button>
 );
 
 export default Calculator;
