@@ -1,122 +1,97 @@
-/* Общие стили для всего проекта */
-body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #f0f0f5;
-  color: #2e3440;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
+.unique-header {
+  background: linear-gradient(45deg, #4A00E0, #8E2DE2);
+  color: #FFFFFF;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.header {
-  background-color: #1f2937;
-  padding: 20px 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.header__container {
+.unique-header__wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
 
-.header__brand {
-  font-size: 32px;
+.unique-header__brand {
+  font-size: 28px;
   font-weight: bold;
 }
 
-.header__logo {
-  color: #10b981;
+.unique-header__logo {
   text-decoration: none;
-  transition: color 0.3s ease;
-  font-family: 'Pacifico', cursive; /* Новый шрифт для логотипа */
+  color: #FFF700;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.header__logo:hover {
-  color: #0d9488;
-}
-
-.header__nav {
+.unique-header__navigation {
   display: flex;
   align-items: center;
 }
 
-.header__user-info {
+.unique-header__user-section,
+.unique-header__auth-section {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-right: 20px;
+  gap: 15px;
 }
 
-.header__user-icon {
+.unique-header__icon {
   font-size: 24px;
-  color: #10b981;
+  color: #FFF700;
 }
 
-.header__user-name {
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.header__auth-links {
-  display: flex;
-  gap: 20px;
-}
-
-.header__auth-link {
-  color: #ffffff;
-  text-decoration: none;
+.unique-header__username {
   font-size: 18px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: color 0.3s ease;
 }
 
-.header__auth-link:hover {
-  color: #10b981;
-}
-
-.header__logout-button {
-  background-color: #ef4444;
-  color: #ffffff;
+.unique-header__logout-btn {
+  background-color: #FF4B2B;
+  color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 50px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  cursor: pointer;
+  gap: 5px;
   transition: background-color 0.3s ease;
 }
 
-.header__logout-button:hover {
-  background-color: #dc2626;
+.unique-header__logout-btn:hover {
+  background-color: #FF6B3B;
 }
 
-.header__admin-link {
-  background-color: #3b82f6;
-  padding: 10px 15px;
-  border-radius: 50px;
-  color: #ffffff;
-  font-weight: 600;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-
-.header__admin-link a {
-  color: #ffffff;
+.unique-header__auth-btn {
+  background-color: #36D1DC;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
   text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.header__admin-link:hover {
-  background-color: #2563eb;
+.unique-header__auth-btn:hover {
+  background-color: #5BD3E5;
 }
 
+.unique-header__admin {
+  margin-left: 20px;
+}
+
+.unique-header__admin-link {
+  color: #FFF700;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.unique-header__admin-link:hover {
+  text-decoration: underline;
+}
