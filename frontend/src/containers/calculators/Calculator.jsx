@@ -11,7 +11,12 @@ function Calculator({ interestRate, loanType }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        dispatch(setCalculatorData({ [name]: Number(value) }));
+        const numericValue = Number(value);
+
+        // Если значение не 0, обновляем состояние
+        if (numericValue !== 0 || value === '') {
+            dispatch(setCalculatorData({ [name]: numericValue }));
+        }
     };
 
     const handleCalculate = () => {
@@ -40,7 +45,7 @@ function Calculator({ interestRate, loanType }) {
                         label="Сумма кредита (до 10,000,000 ₽)"
                         name="cost"
                         value={calculator.cost}
-                        min={0}
+                        min={1}  // Минимальное значение 1, чтобы избежать 0
                         max={10000000}
                         step={1000}
                         onChange={handleChange}
@@ -49,7 +54,7 @@ function Calculator({ interestRate, loanType }) {
                         label="Срок кредита (до 30 лет)"
                         name="term"
                         value={calculator.term}
-                        min={1}
+                        min={1}  // Минимальное значение 1, чтобы избежать 0
                         max={30}
                         step={1}
                         onChange={handleChange}
@@ -91,7 +96,7 @@ const InputField = ({ label, name, value, min, max, step, onChange }) => (
             type="number"
             id={name}
             name={name}
-            value={value}
+            value={value !== 0 ? value : ''} // Не показывать 0 в поле
             min={min}
             max={max}
             step={step}
